@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var startButton: Button
     lateinit var stopButton: Button
     lateinit var setTimeButton: Button
+
     var currentTime: Int = 0
     var remainingTime: Int = 0
     var timer: CountDownTimer? = null
@@ -40,6 +41,10 @@ class MainActivity : AppCompatActivity() {
             timer?.cancel()
             timer = null
             timeText.text = currentTime.toString()
+
+            //set is counting to false when stop button pressed
+            isCounting = false
+            startButton.setText(R.string.start)
         }
         setTimeButton.setOnClickListener {
             setCounterActive(false)
@@ -48,10 +53,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun pauseCounter() {
         timer?.cancel()
-        startButton.text = "Start"
+        startButton.setText(R.string.start)
     }
 
     private fun startCounter() {
+        //Validating time field to avoiding fc when it empty
+        if (timeField.text.toString().trim().isEmpty()){
+            timeField.error = R.string.field_required.toString()
+            timeField.requestFocus()
+            return
+        }
+
         currentTime = timeField.text.toString().toInt()
         timeText.text = currentTime.toString()
         setCounterActive(true)
@@ -65,6 +77,10 @@ class MainActivity : AppCompatActivity() {
                 override fun onFinish() {
                     timeText.text = currentTime.toString()
                     timer = null
+
+                    //set is counting to false when time is up
+                    isCounting = false
+                    startButton.setText(R.string.start)
                 }
             }
             timer?.start()
@@ -78,11 +94,15 @@ class MainActivity : AppCompatActivity() {
                 override fun onFinish() {
                     timeText.text = currentTime.toString()
                     timer = null
+
+                    //set is counting to false when time is up
+                    isCounting = false
+                    startButton.setText(R.string.start)
                 }
             }
             timer?.start()
         }
-        startButton.text = "Pause"
+        startButton.setText(R.string.pause)
     }
 
     private fun setCounterActive(active: Boolean) {
