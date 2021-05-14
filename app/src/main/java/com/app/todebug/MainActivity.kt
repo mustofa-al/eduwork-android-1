@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     private fun startCounter() {
         //Validating time field to avoiding fc when it empty
         if (timeField.text.toString().trim().isEmpty()){
-            timeField.error = R.string.field_required.toString()
+            timeField.error = getString(R.string.field_required)
             timeField.requestFocus()
             return
         }
