@@ -7,6 +7,7 @@ import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -37,12 +38,30 @@ class MainActivity : AppCompatActivity() {
             isCounting = !isCounting
         }
         stopButton.setOnClickListener {
+            val setTime: EditText = findViewById(R.id.textfield_time)
+            val fieldsetTime: String = setTime.text.toString()
+            if(fieldsetTime.isEmpty()){
+                setTime.error = "Required"
+                Toast.makeText(applicationContext, "Time to Count Required ", Toast.LENGTH_SHORT).show()
+            }else{
             timer?.cancel()
             timer = null
             timeText.text = currentTime.toString()
+
+            //1
+            isCounting = false
+            startButton.text = "start"
+            }
         }
         setTimeButton.setOnClickListener {
-            setCounterActive(false)
+            val setTime: EditText = findViewById(R.id.textfield_time)
+            val fieldsetTime: String = setTime.text.toString()
+            if(fieldsetTime.isEmpty()){
+                setTime.error = "Required"
+                Toast.makeText(applicationContext, "Time to Count Required ", Toast.LENGTH_SHORT).show()
+            }else{
+                setCounterActive(false)
+            }
         }
     }
 
