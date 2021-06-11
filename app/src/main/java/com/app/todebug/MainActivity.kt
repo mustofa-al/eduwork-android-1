@@ -7,6 +7,7 @@ import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -29,9 +30,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun initListener() {
         startButton.setOnClickListener {
-            if (!isCounting) {
+            if (!isCounting && validate()) {
                 startCounter()
             } else {
+                showMessage("Masukkan angka lebih dahulu!")
                 pauseCounter()
             }
             isCounting = !isCounting
@@ -42,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             timeText.text = currentTime.toString()
         }
         setTimeButton.setOnClickListener {
+            validate()
             setCounterActive(false)
         }
     }
@@ -97,5 +100,16 @@ class MainActivity : AppCompatActivity() {
         startButton = findViewById(R.id.button_start)
         stopButton = findViewById(R.id.button_stop)
         setTimeButton = findViewById(R.id.button_set_time)
+    }
+
+    private fun validate(): Boolean{
+        if(timeField.text.isNullOrEmpty()){
+            return false
+        }
+        return true
+    }
+
+    private fun showMessage(message: String) {
+        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 }
