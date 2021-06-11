@@ -10,72 +10,72 @@
         android:id="@+id/text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Counter App"
         android:layout_marginTop="40dp"
+        android:text="@string/counter_app"
+        android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="24sp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/textfield_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Time to Count (Second)"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginBottom="64dp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:hint="@string/time_to_count_second"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="60"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="64dp"
         android:textSize="48sp"
         android:textStyle="bold"
         android:visibility="gone"
-        tools:visibility="visible"
-        android:layout_marginBottom="64dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="60"
+        tools:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/container_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textfield_time"
-        android:layout_marginTop="64dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textfield_time">
 
         <Button
             android:id="@+id/button_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start"/>
+            android:text="@string/start" />
 
         <Button
             android:id="@+id/button_stop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Stop"
-            android:layout_marginStart="16dp"/>
-
+            android:layout_marginStart="16dp"
+            android:text="@string/stop" />
     </LinearLayout>
 
     <Button
         android:id="@+id/button_set_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Set Time"
-        app:layout_constraintTop_toBottomOf="@id/container_button"
+        android:text="@string/set_time"
+        app:layout_constraintEnd_toEndOf="@id/container_button"
         app:layout_constraintStart_toStartOf="@id/container_button"
-        app:layout_constraintEnd_toEndOf="@id/container_button"/>
+        app:layout_constraintTop_toBottomOf="@id/container_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
