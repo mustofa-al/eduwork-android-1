@@ -30,10 +30,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initListener() {
         startButton.setOnClickListener {
-            if (!isCounting && validate()) {
+            if (!isCounting) {
                 startCounter()
             } else {
-                showMessage("Masukkan angka lebih dahulu!")
                 pauseCounter()
             }
             isCounting = !isCounting
@@ -42,9 +41,10 @@ class MainActivity : AppCompatActivity() {
             timer?.cancel()
             timer = null
             timeText.text = currentTime.toString()
+            isCounting = false
+            startButton.setText(R.string.start)
         }
         setTimeButton.setOnClickListener {
-            validate()
             setCounterActive(false)
         }
     }
@@ -55,6 +55,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startCounter() {
+        if (timeField.text.toString().trim().isEmpty()){
+            showMessage("Harap di isi!")
+            timeField.requestFocus()
+            return
+        }
         currentTime = timeField.text.toString().toInt()
         timeText.text = currentTime.toString()
         setCounterActive(true)
@@ -68,6 +73,8 @@ class MainActivity : AppCompatActivity() {
                 override fun onFinish() {
                     timeText.text = currentTime.toString()
                     timer = null
+                    isCounting = false
+                    startButton.setText(R.string.start)
                 }
             }
             timer?.start()
@@ -81,6 +88,8 @@ class MainActivity : AppCompatActivity() {
                 override fun onFinish() {
                     timeText.text = currentTime.toString()
                     timer = null
+                    isCounting = false
+                    startButton.setText(R.string.start)
                 }
             }
             timer?.start()
